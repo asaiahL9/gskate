@@ -7,7 +7,7 @@ from tqdm import tqdm
 import re
 import os
 
-l_initial = "c"
+l_initial = "a"
 patterns = {
     "Sponsors": r"Sponsors: ?([^\r\n]+)?",
     "Hometown": r"Hometown: ?([^,]+)?,",
@@ -23,9 +23,8 @@ def inc_char(char):
     i = ord(char[0]) # Convert the character 'a' to its ASCII value
     i += 1           # Increment the ASCII value by 1
     char = chr(i)    # Convert the incremented ASCII value back to a character
-    # if char > 'z':
-    #     print('Done')
-    return char      # Print the new character
+
+    return char     
 
 def get_attr(link):
     parsed_info = {}
@@ -53,7 +52,6 @@ for char in tqdm(range(ord('a'), ord('z') + 1)):
     soup = BeautifulSoup(html_content, 'html.parser')
 
 
-    # find the appropriate tag that contains the weather data
 
     table = soup.find_all('div', class_ = "col-xs-6 col-sm-4 skaternames")
     # print(table)
@@ -71,29 +69,18 @@ for char in tqdm(range(ord('a'), ord('z') + 1)):
         attributes = get_attr(skater_link)
         # print(
         sponsors = attributes['Sponsors']
-        # if sponsors:
-        #     if "'" in sponsors:
-        #         sponsors = sponsors.replace("'", "\\'")
-        # if attributes["Hometown"]:
+  
         if attributes['Hometown'].strip() == "":
             hometown = None
         else:
             hometown = attributes['Hometown'].strip()
-        # if hometown:
-        #     if "'" in hometown:
-        #         hometown = hometown.replace("'", "\\'")
-        # if attributes["Stance"]:
+
         stance = attributes['Stance']
         if attributes["Age"]:
             age = attributes['Age']
-        # if attributes["Status"]
+
         status = attributes['Status']
         
-        # query = f'''INSERT INTO SKATER (FIRST_NAME, LAST_NAME, AGE, STANCE, HOMETOWN, STATE, SPONSORS, STATUS, SPOT_LINK) 
-        #                VALUES 
-        #                ('{skater_name.split()[0]}', '{skater_name.split()[1]}', {age if age is not None else 'NULL'}, '{stance}', 
-        #                '{' '.join(hometown.split()[:-1]) if hometown is not None else 'NULL'}', '{hometown.split()[-1] if hometown is not None else 'NULL'}', 
-        #                '{sponsors}', '{status}', '{skater_link}') '''
        
         query = query = f'''INSERT INTO SKATER (FIRST_NAME, LAST_NAME, AGE, STANCE, HOMETOWN, STATE, SPONSORS, STATUS, SPOT_LINK) 
                        VALUES 
