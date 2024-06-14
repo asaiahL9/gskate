@@ -1,7 +1,6 @@
 ## Skateboarder Database
 
-### I crafted a Python script to scrape a website's public online database to extract and store about thousands of skateboarders
-### registered in their system.
+### I crafted a Python script to scrape a website's public online database to extract and store about thousands of skateboarders registered in their system.
 
 #### 1. Traverses online database from A-Z
 ![alt text](image-1.png)
