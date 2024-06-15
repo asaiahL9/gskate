@@ -1,4 +1,4 @@
-## Skateboarder Database
+## Web Scraping Skateboarder Database
 
 ### I crafted a Python script to scrape a website's public online database to extract and store about thousands of skateboarders registered in their system.
 
